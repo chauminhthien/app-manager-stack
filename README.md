@@ -1,7 +1,7 @@
 
 ## B1
 
-  git clone https://github.com/chauminhthien/react-notification-system-example.git
+  git clone https://github.com/chauminhthien/app-manager-stack.git
 
 ## B2
   cd react-notification-system-example
