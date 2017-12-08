@@ -10,20 +10,17 @@ import Pagination from './Pagination';
 import * as StackActions from './../actions/StackActions';
 
 class Control extends Component {
-
-  onSubmitAdd = (data) => {
-    console.log(data)
-  }
-
   render() {
+    let { propsSeach, propsFilter } = this.props;
+
     return (
       <Grid columns='equal'>
         <Grid.Column>
-          <Search />
+          <Search propsSeach={ propsSeach } />
         </Grid.Column>
 
         <Grid.Column>
-          <Filter />
+          <Filter propsFilter={ propsFilter }/>
         </Grid.Column>
 
         <Grid.Column>

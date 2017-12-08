@@ -5,11 +5,14 @@ import { App }  from './components';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import createStore from './store';
+import { NotifycationProvider } from './components/NotifycationProvider';
 
 const store = createStore();
 
 ReactDOM.render(
   <Provider store={ store }>
-    <App />
+    <NotifycationProvider >
+      <App />
+    </NotifycationProvider>
   </Provider>, document.getElementById('root'));
 registerServiceWorker();

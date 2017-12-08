@@ -3,12 +3,12 @@ import { Table } from 'semantic-ui-react';
 
 import StackItem from './StackItem';
 import StackPage from './StackPage';
+import { withNotification } from './NotifycationProvider';
 
 class StackTable extends Component {
 
   constructor(props){
     super(props);
-    
   }
 
   delStackItem = (index) => {
@@ -17,15 +17,16 @@ class StackTable extends Component {
     data.splice(index, 1);
     actions.setStack(data);
     this.saveStack(data);
+    this.props.notification.s("Thông Báo", "Xoá Thành Công");
   }
 
   StatusChange = (id) => {
-    let { stack, actions } = this.props;
-    let data = [ ...stack ];
+    let { dt, actions } = this.props;
+    let data = [ ...dt ];
     data[id].status = !data[id].status;
-
     actions.setStack(data);
     this.saveStack(data);
+    this.props.notification.s("Thông Báo", "Cập Nhật Thành Công");
   }
 
   onChangeNameStackItem = (id, stackName) => {
@@ -35,6 +36,7 @@ class StackTable extends Component {
 
     actions.setStack(data);
     this.saveStack(data);
+    this.props.notification.s("Thông Báo", "Cập Nhật Thành Công");
   }
 
   saveStack = (data) => {
@@ -69,4 +71,4 @@ class StackTable extends Component {
   }
 }
 
-export default StackTable;
+export default withNotification(StackTable);

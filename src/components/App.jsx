@@ -13,7 +13,11 @@ class App extends Component {
     super(props);
 
     this.state = {
-      data : []
+      data : [],
+      filter : {
+        name    : "",
+        status  : -1
+      }
     }
   }
 
@@ -26,13 +30,50 @@ class App extends Component {
       
   }
 
+  onChangeFilterName = (name) => {
+    this.state.filter.name = name;
+    this.setState({
+      ...this.state
+    });
+  }
+
+  onChangeFilterStatus = (st) => {
+    this.state.filter.status = parseInt(st);
+    this.setState({
+      ...this.state
+    });
+  }
+
   render() {
-    let { stack } = this.props;
+    let { stack :stacks } = this.props;
+    let { filter } = this.state;
+    if( filter ){
+      stacks = stacks.filter( stack => {
+        return stack.name.toLowerCase().indexOf(filter.name.toLowerCase() ) !== -1 ;
+      });
+
+      stacks = stacks.filter( stack => {
+        if(filter.status === -1)
+          return stack;
+        else
+          return stack.status === (filter.status === 1 ? true : false ) ;
+      });
+
+    }
+
+    let propsSeach = {
+      onChangeFilterName : this.onChangeFilterName
+    }
+
+    let propsFilter = {
+      onChangeFilterStatus : this.onChangeFilterStatus
+    }
+
     return (
       <Container>
-        <Header onClick={ this.test} textAlign="center" size='huge'>Công Việc Ngày Hôm Nay</Header> <br /><br /><br />
-        <Control />
-        <StackTable actions={ this.props.actions } stack={ stack } />
+        <Header textAlign="center" size='huge'>Công Việc Ngày Hôm Nay</Header> <br /><br /><br />
+        <Control propsSeach={ propsSeach } propsFilter={ propsFilter } />
+        <StackTable actions={ this.props.actions } stack={ stacks } dt={ this.props.stack } />
       </Container>
     );
   }

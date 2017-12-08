@@ -6,6 +6,7 @@
     "material-ui": "^0.19.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-notification-system": "^0.2.16",
     "react-redux": "^5.0.6",
     "react-scripts": "1.0.17",
     "redux": "^3.7.2",

@@ -2,15 +2,25 @@ import React, { Component } from 'react';
 import { Dropdown } from 'semantic-ui-react';
 
 const options = [
-  { key: 1, text: 'One', value: 1 },
-  { key: 2, text: 'Two', value: 2 },
-  { key: 3, text: 'Three', value: 3 },
+  { key: 1, text: 'Tất Cả', value: -1 },
+  { key: 2, text: 'Hoàn Thành', value: 1 },
+  { key: 3, text: 'Chưa Hoàn Thành', value: 0 },
 ]
 
 class Filter extends Component {
-  state = {}
+  constructor(props){
+    super(props);
+    this.state = {
+      value    : ""
+    }
+  }
   
-  handleChange = (e, { value }) => this.setState({ value })
+  handleChange = (e, { value }) => {
+    this.setState({value});
+    this.props.propsFilter.onChangeFilterStatus(value);
+  }
+      
+
 
   render() {
     const { value } = this.state;
@@ -21,7 +31,7 @@ class Filter extends Component {
         options={options}
         placeholder='Choose an option'
         selection
-        value={value}
+        defaultValue={-1}
       />
     );
   }

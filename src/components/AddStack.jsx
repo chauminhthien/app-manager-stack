@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import  Modal  from './Modal';
 import StackFormAdd from './StackFormAdd';
 import * as StackActions from './../actions/StackActions';
+import { withNotification } from './NotifycationProvider';
 
 class AddStack extends Component {
   constructor(props){
@@ -26,6 +27,7 @@ class AddStack extends Component {
     this.setState({
       open: false
     });
+    this.props.notification.s("Thông Báo", "Thêm Stack Thành Công");
   }
 
   render() {
@@ -57,4 +59,4 @@ let mapDispatchToProp = (dispatch): any => {
   return { actions };
 };
 
-export default connect(mapStateToProps, mapDispatchToProp)(AddStack);
+export default withNotification(connect(mapStateToProps, mapDispatchToProp)(AddStack));
