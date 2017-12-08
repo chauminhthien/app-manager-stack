@@ -64,7 +64,7 @@ class StackTable extends Component {
         </Table.Body>
 
         <Table.Footer>
-          <StackPage />
+          {/* <StackPage /> */}
         </Table.Footer>
       </Table>
     );

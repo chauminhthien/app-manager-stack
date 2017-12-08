@@ -28,7 +28,7 @@ class Control extends Component {
         </Grid.Column>
 
         <Grid.Column>
-          <Pagination />
+          {/* <Pagination /> */}
         </Grid.Column>
           
       </Grid>
